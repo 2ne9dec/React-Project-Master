@@ -1,10 +1,8 @@
 import React, { useContext, useReducer, useEffect } from 'react';
 import {
   CLEAR_CART,
-  DECREASE,
   DISPLAY_ITEMS,
   GET_TOTALS,
-  INCREASE,
   LOADING,
   REMOVE,
   TOGGLE_AMOUNT,
@@ -33,14 +31,6 @@ const AppProvider = ({ children }) => {
     dispatch({ type: REMOVE, payload: id });
   };
 
-  const increase = (id) => {
-    dispatch({ type: INCREASE, payload: id });
-  };
-
-  const deacrease = (id) => {
-    dispatch({ type: DECREASE, payload: id });
-  };
-
   const fetchData = async () => {
     dispatch({ type: LOADING });
     const response = await fetch(url);
@@ -66,8 +56,6 @@ const AppProvider = ({ children }) => {
         ...state,
         clearCart,
         remove,
-        increase,
-        deacrease,
         toggleAmount,
       }}>
       {children}

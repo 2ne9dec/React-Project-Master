@@ -1,9 +1,7 @@
 import {
   CLEAR_CART,
-  DECREASE,
   DISPLAY_ITEMS,
   GET_TOTALS,
-  INCREASE,
   LOADING,
   REMOVE,
   TOGGLE_AMOUNT,
@@ -18,24 +16,6 @@ const reducer = (state, action) => {
         ...state,
         cart: state.cart.filter((cartItem) => cartItem.id !== action.payload),
       };
-    case INCREASE:
-      let increaseCart = state.cart.map((cartItem) => {
-        if (cartItem.id === action.payload) {
-          return { ...cartItem, amount: cartItem.amount + 1 };
-        }
-        return cartItem;
-      });
-      return { ...state, cart: increaseCart };
-    case DECREASE:
-      let decreaseCart = state.cart
-        .map((cartItem) => {
-          if (cartItem.id === action.payload) {
-            return { ...cartItem, amount: cartItem.amount - 1 };
-          }
-          return cartItem;
-        })
-        .filter((cartItem) => cartItem.amount !== 0);
-      return { ...state, cart: decreaseCart };
     case GET_TOTALS:
       let { total, amount } = state.cart.reduce(
         (cartTotal, cartItem) => {
